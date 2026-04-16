@@ -11,16 +11,23 @@
     <link rel="stylesheet" href="style.css">
   </head>
   <body>
+      <!-- Background audio -->
+       <audio id="bg-music" src="audio/HorrorMusic.mp3" loop ></audio>
+
     <header>
       <h1>
-        This is your Giga Pet
+        Cematary Giga Pet
       </h1>
     </header>
 
     <main>
       <section class="pet-image-container">
+
+        <!-- Speech bubble that appears above the pet image (e.g. on hover or button click) -->
+        <div class="pet-message"></div>
+
          <!-- Replace pet image with your own pet image -->
-        <img class="pet-image" src="images/zombieDog.jpg">
+        <img class="pet-image" src="images/zombiedog.png" alt="Your Giga Pet">
       </section>
       <section class="dashboard">
         <div>Name: <strong><span class="name"></span></strong></div>
@@ -28,19 +35,14 @@
         <div>Happiness: <strong><span class="happiness"></span> tail wags (per min)</strong></div>
         <div> Energy: <strong><span class="energy"></span></strong></div>
         <div class="pet-message"></div>
+
         <div class="button-container">
-          <button class="treat-button">
-            Treat
-          </button>
-          <button class="play-button">
-            Play
-          </button>
-          <button class="exercise-button">
-            Exercise
-          </button>
-          <button class="nap-button">
-            Nap
-          </button>
+          <button class="treat-button"> Treat </button>
+          <button class="play-button"> Play </button>
+          <button class="exercise-button"> Exercise </button>
+          <button class="nap-button"> Nap </button>
+          <!-- Mute button toggles background music on/off -->
+          <button class="mute-button"> Mute </button>
         </div>
       </section>
     </main>
@@ -50,4 +52,5 @@
             integrity="sha256-gvQgAFzTH6trSrAWoH1iPo9Xc96QxSZ3feW6kem+O00="
             crossorigin="anonymous"></script>
   </body>
+
 </html>

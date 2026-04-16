@@ -1,25 +1,43 @@
+/* Import spooky font from Google */
+@import url('https://fonts.googleapis.com/css2?family=Creepster&display=swap');
 
 * {
     box-sizing: border-box;
   }
-  
+
   body {
     font-family: helvetica, arial, sans-serif;
-    margin: 25px;
+    margin: 0; /* removed default margin so background fills the full screen */
+    background-image: url('images/graveyard_BG.jpg');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    height: 100vh;
+    overflow: hidden; /* prevents scrolling */
   }
-  
+
   main {
-    display:block;
-    height:175px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    padding-top: 20px;
+    height: calc(100vh - 100px); 
+    gap: 20px;
   }
   
+  /* Changed header border to zombie green to match the overall theme */
   header {
-    border-bottom: 1px solid black;
+    border-bottom: 2px solid #00ff00;
+
   }
   
   h1 {
-    font-weight: bold;
-    color: #000;
+    font-family: 'Creepster', cursive;
+    color: #00ff00; /* zombie green */
+    font-size: 3rem;
+    text-align: center ;
+    text-shadow: 0 0 10px #00ff00;
   }
   
   .bold {
@@ -46,37 +64,118 @@
   }
   
   .pet-image {
-    height:250px;
+    height: 250px;
+    display: block; 
+
   }
   
   .dashboard div {
     display:block;
   }
   
+  /* Changed from float:left to fixed positioning so the zombie dog sticks to the bottom-center of the screen */
   .pet-image-container {
-    float:left;
-    padding:10px;
+    position: fixed;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%); /* horizontally centers the element */
+    padding: 0;
+  }
+
+  /* Speech bubble that appears above the pet — floats 40px above the image container */
+  .pet-message {
+  position: absolute;
+  top: -40px; /* positions the message above the pet image */
+  left: 0;
+  right: 0;
+  text-align: center;
+  background-color: rgba(0,0,0,0.7); /* semi-transparent dark background */
+  color: #00ff00;
+  font-family: 'Creepster', cursive;
+  font-size: 1.5rem;
+  padding-bottom: 10px;
+  border-radius: 3px;
+  border: 1px solid #00ff00;
   }
   
+  /* Changed dashboard from float:left to a centered flex column with a dark semi-transparent background box */
   .dashboard {
-    float:left;
-    padding:20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    width: 300px;
+    padding: 20px;
+    background-color: rgba(0, 0, 0, 0.6); /* dark transparent box so text is readable over the background */
+    border: 2px solid #00ff00;
+    border-radius: 8px;
+    color: #ffffff;
   }
   
+  /* Changed button container to flexbox so buttons wrap and center (needed for the added Mute button) */
   .button-container {
+    display: flex;
+    font-size: 19px;
+    flex-wrap: wrap; /* allows buttons to wrap to a second row if needed */
+    justify-content: center;
+    gap: 10px;
     margin-top:20px;
   }
   
+  /* Updated buttons with Creepster font, green border/glow, and rounded corners for the zombie theme */
   .button-container button {
     width: 100px;
-      margin-right: 10px;
-      text-align: center;
-      display: inline-block;
-      float: left;
-    font-size:15px;
+    text-align: center;
+    display: inline-block;
+    float: none; /* overrides old float:left so flex layout handles alignment */
+    font-family: 'Creepster', cursive;
+    font-size:27px;
     background-color: #1e2835;
-    border-color: #404853;
+    border: 2px solid #00ff00; /* zombie green border */
     cursor:pointer;
     background-image: linear-gradient(to bottom,rgba(246,246,246,.1)0%,rgba(30,40,53,0)66%);
     color: #fafafa;
+    text-shadow: 0 0 2px #00ff00; /* subtle green glow on button text */
+    border-radius: 5px;
   }
+
+  /* Bounce for play */
+@keyframes bounce {
+  0%   { transform: translateY(0); }
+  50%  { transform: translateY(-33px); }
+  100% { transform: translateY(0); }
+}
+.bounce {
+  animation: bounce 0.5s ease 0s 5;
+}
+
+/* Shake for exercise */
+@keyframes shake {
+  0%   { transform: translateX(0); }
+  25%  { transform: translateX(-16px); }
+  75%  { transform: translateX(16px); }
+  100% { transform: translateX(0); }
+}
+.shake {
+  animation: shake 0.4s ease 0s 5;
+}
+
+/* Spin for treat */
+@keyframes spin {
+  0%   { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+.spin {
+  animation: spin 0.6s ease 0s 5;
+}
+
+/* Pulse for nap */
+@keyframes pulse {
+  0%   { opacity: 1; }
+  50%  { opacity: 0.3; }
+  100% { opacity: 1; }
+}
+.pulse {
+  /* animation for nap button 3 times */
+  animation: pulse 1.7s ease 0s 3;
+}
