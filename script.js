@@ -43,11 +43,13 @@ $(function() { // Makes sure that your function is called once all the DOM eleme
         $('.pet-message').text(""); // clears the speech bubble
         growlSound.pause();         // stops the growl sound
       }
+      // ---- .hover() ----
     );
     // Add a variable "pet_info" equal to a object with the name (string), weight (number), and happiness (number) of your pet
     // Added energy:10 as a new stat tracked and updated by nap/exercise buttons
     var pet_info = {name:"Bacon", weight:120, happiness:8, energy:10};
   
+
     function clickedTreatButton() {
       // Play a laugh sound effect when the treat button is clicked
       var sound = new Audio('audio/TBLaugh.mp3');
@@ -58,7 +60,7 @@ $(function() { // Makes sure that your function is called once all the DOM eleme
       pet_info.weight += 3;
       $('.pet-message').text("Yum! That was delicious! Woof!");
 
-      // ---- .addClass() / .removeClass() ----
+      // ---- .addClass()  ----
       // .addClass('spin') adds the CSS class "spin" to the pet image element.
       // The "spin" class is defined in style.css and has a @keyframes animation attached to it,
       // so adding it instantly starts the spinning animation on the dog.
@@ -69,6 +71,7 @@ $(function() { // Makes sure that your function is called once all the DOM eleme
         $('.pet-image').removeClass('spin');
       }, 2500);
 
+      // ---- .addClass()  ----
       checkAndUpdatePetInfoInHtml();
     }
     
