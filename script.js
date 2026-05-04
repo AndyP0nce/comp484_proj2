@@ -1,7 +1,53 @@
 $(function() { // Makes sure that your function is called once all the DOM elements of the page are ready to be used.
     
-    // Called function to update the name, happiness, and weight of our pet in our HTML
+    console.info("%cMy Cemetery Pet website has loaded successfully!",
+       "color: #00ff00; background: #1a1a1a; font-size: 16px; font-weight: bold; padding: 4px 8px; border-radius: 4px;");
+    console.warn("Warning: This pet is a zombie dog. It may growl at you and doesn't like to be touched.");
+    console.error("Error: Do not attempt to feed this pet real food. It is undead and cannot digest real food. Use the 'Treat' button instead.");
+    console.table([
+      {stat: "Name", value: "Bacon"},
+      {stat: "Weight", value: 120},
+      {stat: "Happiness", value: 8},
+      {stat: "Energy", value: 10}
+    ])
+    console.group("Pet Info");
+      console.log("Name: Bacon");
+      console.log("Weight: 120");
+      console.log("Happiness: 8");
+      console.log("Energy: 10");
+    console.groupEnd();
+    console.log(
+    "%cMy Cemetery Pet",
+    "color: #00ff00; background: #1a1a1a; font-size: 16px; font-weight: bold; padding: 4px 8px; border-radius: 4px;"
+      );
+
     checkAndUpdatePetInfoInHtml();
+
+    console.log(" 'filter test' in the console filter box to find this message");
+    console.log( " type /filter.*test/i as a regex filter to find this.");
+
+      fetch("audio/nonexistentaudio_file.mp3")
+        .catch(function(error) {
+          console.error("Failed to load audio file: 404 fetch error caught" + error.message);
+        });
+
+      setTimeout(function() {
+        try {
+          var undefinedVariable; // This variable is declared but not defined, so it's undefined
+          undefinedVariable.play();
+          } catch (error) {
+            console.error("Error caught: Attempted to call .play() on an undefined variable. " + error.message);
+          }
+      }, 1000);
+        
+      setTimeout(function(){
+        var start = Date.now();
+        while (Date.now() - start < 200) {
+          // Simulate a long-running task for 200 milliseconds
+        }
+        console.warn("Warning: The main thread was blocked for 200 milliseconds due to a long-running task.");
+
+      }, 2000);
   
     // When each button is clicked, it will "call" function for that button (functions are below)
     $('.treat-button').click(clickedTreatButton);
@@ -51,6 +97,7 @@ $(function() { // Makes sure that your function is called once all the DOM eleme
   
 
     function clickedTreatButton() {
+      console.log("Treat button clicked. Pet states Before:", JSON.stringify(pet_info));
       // Play a laugh sound effect when the treat button is clicked
       var sound = new Audio('audio/TBLaugh.mp3');
       sound.play();
@@ -73,9 +120,12 @@ $(function() { // Makes sure that your function is called once all the DOM eleme
 
       // ---- .addClass()  ----
       checkAndUpdatePetInfoInHtml();
+
+      console.log("Treat button clicked. Pet states After:", JSON.stringify(pet_info));
     }
     
     function clickedPlayButton() {
+      console.log("Play button clicked. Pet states Before:", JSON.stringify(pet_info));
       // Play a zombie scream sound effect when the play button is clicked
       var sound = new Audio('audio/zombiescream.mp3');
       sound.play();
@@ -91,9 +141,11 @@ $(function() { // Makes sure that your function is called once all the DOM eleme
       }, 2500);
 
       checkAndUpdatePetInfoInHtml();
+      console.log("Play button clicked. Pet states After:", JSON.stringify(pet_info));
     }
     
     function clickedExerciseButton() {
+      console.log("Exercise button clicked. Pet states Before:", JSON.stringify(pet_info));
       // Play a "yeaaas" zombie sound when the exercise button is clicked
       var sound = new Audio('audio/zombiesyeaaaas.mp3');
       sound.play();
@@ -101,6 +153,10 @@ $(function() { // Makes sure that your function is called once all the DOM eleme
       pet_info.happiness -= 2;
       // Decrease pet weight
       pet_info.weight -= 3;
+
+      //added decrease in energy stat for exercise button
+      //placed bug fix for energy stat to not go below zero in checkWeightAndHappinessBeforeUpdating() function
+      pet_info.energy -= 5;
       $('.pet-message').text("*panting* I need a nap... That was exhausting!");
 
       $('.pet-image').addClass('shake');
@@ -108,9 +164,11 @@ $(function() { // Makes sure that your function is called once all the DOM eleme
         $('.pet-image').removeClass('shake');
       }, 400);
       checkAndUpdatePetInfoInHtml();
+      console.log("Exercise button clicked. Pet states After:", JSON.stringify(pet_info));
     }
 
     function clickedNapButton() {
+      console.log("Nap button clicked. Pet states Before:", JSON.stringify(pet_info));
       // Play a snoring sound when the nap button is clicked
       var sound = new Audio('audio/zombiesnore.mp3');
       sound.play();
@@ -125,6 +183,7 @@ $(function() { // Makes sure that your function is called once all the DOM eleme
       }, 7100); // 1.7s x 5 = 5.1s to match 1.7s x 5 plays
 
       checkAndUpdatePetInfoInHtml();
+      console.log("Nap button clicked. Pet states After:", JSON.stringify(pet_info));
     }
   
     function checkAndUpdatePetInfoInHtml() {
