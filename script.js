@@ -77,6 +77,7 @@ $(function() { // Makes sure that your function is called once all the DOM eleme
       // Syntax: $(selector).hover( handlerIn, handlerOut )
       $('.pet-image').hover(
       function() {
+        console.time("hover-enter");
         // --- mouseenter handler ---
         // Fires the moment the cursor enters the pet image area
         growlSound.currentTime = 0; // reset audio to the beginning so it always starts fresh
@@ -84,6 +85,7 @@ $(function() { // Makes sure that your function is called once all the DOM eleme
         $('.pet-message').text("*Growls* Don't touch me HUMAN...");
       },
       function() {
+        console.timeEnd("hover-enter");
         // --- mouseleave handler ---
         // Fires the moment the cursor leaves the pet image area
         $('.pet-message').text(""); // clears the speech bubble
@@ -97,6 +99,8 @@ $(function() { // Makes sure that your function is called once all the DOM eleme
   
 
     function clickedTreatButton() {
+      //added console.time() and console.timeEnd() to measure how long the function takes to execute
+      console.time("treat-button");
       console.log("Treat button clicked. Pet states Before:", JSON.stringify(pet_info));
       // Play a laugh sound effect when the treat button is clicked
       var sound = new Audio('audio/TBLaugh.mp3');
@@ -122,9 +126,12 @@ $(function() { // Makes sure that your function is called once all the DOM eleme
       checkAndUpdatePetInfoInHtml();
 
       console.log("Treat button clicked. Pet states After:", JSON.stringify(pet_info));
+      // End the timer and log how long the treat button function took to execute
+      console.timeEnd("treat-button");
     }
     
     function clickedPlayButton() {
+      console.time("play-button");
       console.log("Play button clicked. Pet states Before:", JSON.stringify(pet_info));
       // Play a zombie scream sound effect when the play button is clicked
       var sound = new Audio('audio/zombiescream.mp3');
@@ -142,9 +149,11 @@ $(function() { // Makes sure that your function is called once all the DOM eleme
 
       checkAndUpdatePetInfoInHtml();
       console.log("Play button clicked. Pet states After:", JSON.stringify(pet_info));
+      console.timeEnd("play-button");
     }
     
     function clickedExerciseButton() {
+      console.time("exercise-button");
       console.log("Exercise button clicked. Pet states Before:", JSON.stringify(pet_info));
       // Play a "yeaaas" zombie sound when the exercise button is clicked
       var sound = new Audio('audio/zombiesyeaaaas.mp3');
@@ -165,9 +174,11 @@ $(function() { // Makes sure that your function is called once all the DOM eleme
       }, 400);
       checkAndUpdatePetInfoInHtml();
       console.log("Exercise button clicked. Pet states After:", JSON.stringify(pet_info));
+      console.timeEnd("exercise-button");
     }
 
     function clickedNapButton() {
+      console.time("nap-button");
       console.log("Nap button clicked. Pet states Before:", JSON.stringify(pet_info));
       // Play a snoring sound when the nap button is clicked
       var sound = new Audio('audio/zombiesnore.mp3');
@@ -184,6 +195,7 @@ $(function() { // Makes sure that your function is called once all the DOM eleme
 
       checkAndUpdatePetInfoInHtml();
       console.log("Nap button clicked. Pet states After:", JSON.stringify(pet_info));
+      console.timeEnd("nap-button");
     }
   
     function checkAndUpdatePetInfoInHtml() {
